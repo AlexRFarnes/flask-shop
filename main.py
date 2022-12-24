@@ -1,8 +1,9 @@
 from flask import Flask
 from flask import render_template
+from flask import request
 # from markupsafe import escape
 
-from database import db
+from database import User
 
 app = Flask(__name__)
 
@@ -15,8 +16,17 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route("/register")
+@app.route("/register", methods=['GET', 'POST'])
 def register():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        if email and password:
+            user = User.create(email=email, password=password) # INSERT
+            print(user.id)
+
+
     return render_template("register.html")
 
 
