@@ -1,5 +1,6 @@
 from peewee import *
 from decouple import config
+import datetime
 
 
 db = MySQLDatabase(
@@ -11,6 +12,6 @@ db = MySQLDatabase(
 )
 
 class User(Model):
-    email=""
-    password=""
-    created_at=""
+    email = TextField()
+    password = TextField()
+    created_at = DateTimeField(default=datetime.datetime.now)
