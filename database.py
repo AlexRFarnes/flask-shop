@@ -20,4 +20,5 @@ class User(Model):
         database = db
         db_table = "users"
 
+
 db.create_tables([User])
