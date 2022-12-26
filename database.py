@@ -11,6 +11,7 @@ db = MySQLDatabase(
     host=config("host")
 )
 
+
 class User(Model):
     email = TextField()
     password = TextField()
@@ -21,4 +22,20 @@ class User(Model):
         db_table = "users"
 
 
-db.create_tables([User])
+class Product(Model):
+    name = TextField()
+    price = IntegerField()
+    user_id = ForeignKeyField(User, backref='products')
+    created_at = DateTimeField(default=datetime.datetime.now)
+
+    @property
+    def format_price(self):
+        return format(self.price/100, '.2f')
+
+    class Meta:
+        database = db
+        db_table = "products"
+
+
+
+db.create_tables([User, Product])
