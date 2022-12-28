@@ -5,13 +5,15 @@ from flask import request
 from flask import redirect
 # from markupsafe import escape
 
+from decouple import config
+
 from flask_bcrypt import Bcrypt
 
 from database import User
 from database import Product
 
 app = Flask(__name__)
-app.secret_key = "&ald$skcmjd54545edf&e154ee!115#e4c1aa35gH%"
+app.secret_key = config('FLASK_SECRET_KEY')
 bcrypt = Bcrypt(app)
 
 
@@ -85,7 +87,7 @@ def products_update(id):
 
     return render_template("products/update.html", product=product)
 
-
+# delete route
 
 if __name__ == "__main__":
     app.run(debug=True)

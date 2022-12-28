@@ -4,11 +4,11 @@ import datetime
 
 
 db = MySQLDatabase(
-    database=config("database"),
-    user=config("user"),
-    password=config("password"),
-    port=int(config("port")),
-    host=config("host")
+    database=config("MYSQL_DATABASE"),
+    user=config("MYSQL_USER"),
+    password=config("MYSQL_PASSWORD"),
+    port=config("MYSQL_PORT", cast=int),
+    host=config("MYSQL_HOST")
 )
 
 
